@@ -1,0 +1,23 @@
+[
+  {
+    "dataset": "business",
+    "object_path": "raw/business/business_v1.json",
+    "format": "json",
+    "version": "v1",
+    "columns": ["business_id", "name", "stars"]
+  },
+  {
+    "dataset": "review",
+    "object_path": "raw/review/review_v1.json",
+    "format": "json",
+    "version": "v1",
+    "columns": ["review_id", "business_id", "stars"]
+  },
+  {
+    "dataset": "checkin",
+    "object_path": "raw/checkin/checkin_v1.csv",
+    "format": "csv",
+    "version": "v1",
+    "columns": ["business_id", "date"]
+  }
+]
