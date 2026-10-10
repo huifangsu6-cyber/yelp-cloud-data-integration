@@ -1,42 +1,62 @@
-# Case study: cloud data integration for restaurant analytics
+# Case Study: Preparing Yelp Data for Cloud Analytics
 
-## Context
-A university team analysed Yelp business, review and check-in datasets. Before teammates could undertake dataset-specific analysis, the raw files needed a consistent shared data foundation.
+## Project background
 
-## My contribution
-I organised and standardised source files in Google Cloud Storage, including file naming, folder structure, CSV/JSON formats, duplicate or irrelevant files, schema inspection and identification of final versions. I designed the GCS-to-BigQuery integration workflow, set up data loading and table structures, and distributed the prepared datasets to teammates.
+Our university team explored restaurant performance using Yelp business, review and check-in datasets. The first challenge was bringing files with different structures and formats into a shared environment so the analysis workstreams could use consistent inputs.
 
-## Architecture
+## My role: cloud data integration
+
+I was responsible for preparing the shared data foundation using **Google Cloud Storage (GCS)** and **BigQuery**.
+
+| Area | What I did |
+| --- | --- |
+| File organisation | Structured cloud storage by dataset type and purpose |
+| Data standardisation | Standardised file names and CSV/JSON formats |
+| Dataset management | Removed duplicate or irrelevant files and identified final versions |
+| Schema readiness | Reviewed fields and file structures before loading |
+| Cloud integration | Designed the GCS-to-BigQuery workflow and set up loading and table structures |
+| Team hand-off | Distributed prepared datasets to teammates for analysis |
+
+## Data flow
+
 ```text
-Yelp source datasets
-   |
-   v
-File inventory and standardisation  <-- My work
-   |
-   v
-Google Cloud Storage organisation   <-- My work
-   |
-   v
-BigQuery loading and schema setup   <-- My work
-   |
-   v
-Shared analytical datasets
-   |
-   +--> Review analysis             <-- Teammate workstream
-   +--> Check-in analysis           <-- Teammate workstream
-   +--> Other group analysis
+Yelp source files
+       |
+       v
+Inventory, standardisation and schema review
+       |
+       v
+Google Cloud Storage
+       |
+       v
+BigQuery loading and tables
+       |
+       v
+Shared datasets for team analysis
 ```
 
-## Practical decisions
-- **Naming and structure:** classified datasets by type and purpose so collaborators could identify the right inputs.
-- **Version control:** selected authoritative dataset versions rather than sharing multiple ambiguous copies.
-- **Format and schema:** checked CSV/JSON format and field structures before downstream ingestion.
-- **Collaboration:** made prepared datasets available to the appropriate workstreams.
+## Technical decisions
 
-## Evidence and limitations
-These responsibilities are based on my account of my work on the group project. The original coursework, teaching materials, collaborator notebooks, cloud credentials and Yelp source data are deliberately **not republished** here. This repository's code is a **new synthetic portfolio demonstration**, not a reproduction of the original cloud deployment.
+### Consistent storage structure
+Organising files by data type and purpose made it easier for the team to locate the correct inputs and work from a common dataset structure.
 
-No production availability, quantified quality improvement or commercial impact is claimed.
+### Reliable file versions
+I reviewed redundant files and established which versions should be used for downstream work, reducing ambiguity during collaboration.
 
-## Interview summary
-> I prepared the cloud data foundation for a group Yelp analytics project: organising and standardising source files in GCS, checking formats and schemas, setting up BigQuery loading and table structures, and handing off consistent datasets to teammates for their SQL and Python analysis.
+### Preparing data for BigQuery
+I checked the formats and fields of source datasets and set up the loading workflow and table structures needed for SQL analysis.
+
+### Supporting parallel analysis
+Once the datasets were organised and loaded, teammates could work on their respective review, check-in and other analytical tasks using the shared data foundation.
+
+## Related examples
+
+- [Source manifest validation](../src/source_manifest.py) — file metadata, path, format and version checks.
+- [BigQuery SQL quality checks](../sql/checkin_quality_checks.sql) — example SQL for profiling timestamps.
+- [Python data validation](../src/checkin_quality.py) — example timestamp parsing and error counts.
+
+These examples use sample data and illustrate techniques relevant to the project.
+
+## Skills
+
+Google Cloud Storage · BigQuery · Data Integration · Data Standardisation · Schema Review · Data Quality · Team Collaboration
