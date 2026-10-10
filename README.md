@@ -37,7 +37,9 @@ Shared analytical data
 | [Individual case study](docs/case_study.md) | My GCS/BigQuery data integration responsibilities |
 | [Architecture](docs/architecture.md) | Data flow, quality gates and responsibility boundaries |
 | [Data governance](docs/data_governance.md) | File organisation, schema readiness and dataset hand-off |
-| [Python example](src/checkin_quality.py) | Newly written synthetic timestamp validation |
+| **[Source manifest validator](src/source_manifest.py)** | **New synthetic example aligned with my file organisation, versioning and schema work** |
+| [Manifest validation guide](docs/manifest_validation.md) | Validation rules and limitations |
+| [Python check-in example](src/checkin_quality.py) | Optional synthetic timestamp validation, not my original workstream |
 | [SQL example](sql/checkin_quality_checks.sql) | Read-only BigQuery Standard SQL quality profile |
 | [Unit tests](tests/test_checkin_quality.py) | Input validation and duplicate detection |
 | [Synthetic sample](sample_data/synthetic_checkins.csv) | Fictional data only |
@@ -47,6 +49,7 @@ Shared analytical data
 Requires **Python 3.10+**. No cloud account, API key or third-party package required.
 
 ```bash
+python src/source_manifest.py
 python src/checkin_quality.py
 python -m unittest discover -s tests -v
 ```
