@@ -1,33 +1,52 @@
-# Architecture and responsibility boundaries
+# Data Architecture
+
+## Cloud analytics workflow
 
 ```text
-Source JSON / CSV
+Yelp datasets
+(JSON / CSV)
       |
-      | inventory, file naming, format checks, version selection
       v
-Google Cloud Storage (GCS)
+Source preparation
+- Dataset inventory
+- File naming and formats
+- Version selection
+- Schema review
       |
-      | organised bucket and dataset structure
       v
-BigQuery ingestion
+Google Cloud Storage
+- Organised source files
+- Shared dataset structure
       |
-      | schema review, table setup and loading
       v
-Shared datasets
+BigQuery
+- Data loading
+- Table setup
       |
-      +-- downstream SQL and Python analysis (collaborative)
+      v
+Analytics-ready shared datasets
+      |
+      v
+Team analysis (SQL / Python)
 ```
 
-**Original implementation:** GCS and BigQuery were used in the university group project. Specific bucket names, access policies and production orchestration are intentionally not reproduced here.
+## Key design considerations
 
-**This repository:** a self-contained Python demonstration with invented records. It illustrates validation and transformation techniques but does not connect to GCS or BigQuery.
+| Stage | Focus |
+| --- | --- |
+| Source preparation | Consistent filenames, formats and final versions |
+| Cloud storage | Predictable dataset organisation |
+| BigQuery ingestion | Compatible fields and table structures |
+| Team hand-off | Clear, consistent datasets for parallel analysis |
 
-### Quality gates worth applying to a real pipeline
-1. Verify source file type and expected schema.
-2. Check source row counts and null business identifiers.
-3. Parse timestamps with explicit error handling.
-4. Record duplicate identifiers/timestamps without silently discarding events.
-5. Reconcile valid, invalid and missing-record counts.
-6. Document data ownership and hand-off.
+## Data quality checkpoints
 
-These are recommended controls, not a claim that all were automated in the original coursework.
+The included Python and SQL examples illustrate practical checks that complement this workflow:
+
+1. Check required file metadata and expected columns.
+2. Identify repeated file paths or dataset versions.
+3. Verify file formats and extensions.
+4. Parse timestamps and count invalid values.
+5. Report duplicate event keys.
+
+See the [source manifest validator](../src/source_manifest.py) and [SQL quality checks](../sql/checkin_quality_checks.sql) for runnable examples.
