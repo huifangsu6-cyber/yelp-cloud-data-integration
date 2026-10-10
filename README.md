@@ -18,24 +18,21 @@ The team worked with Yelp business, review and check-in data to explore restaura
 
 ## Data workflow
 
-```text
-Yelp datasets (CSV / JSON)
-           |
-           v
-  File inventory & standardisation
-           |
-           v
-  Google Cloud Storage (GCS)
-           |
-           v
-  BigQuery loading & table setup
-           |
-           v
-  Shared analytics datasets
-           |
-           v
-  Team SQL / Python analysis
+```mermaid
+flowchart LR
+    A["Yelp datasets<br/>CSV / JSON"] --> B["File inventory<br/>Naming & version control"]
+    B --> C["Schema & format review"]
+    C --> D[("Google Cloud Storage")]
+    D --> E[("BigQuery")]
+    E --> F["Shared datasets<br/>Team analytics"]
+
+    classDef preparation fill:#eaf4ff,stroke:#2874a6,color:#123047
+    classDef cloud fill:#eaf8f0,stroke:#25845b,color:#123c29
+    class B,C preparation
+    class D,E cloud
 ```
+
+The diagram shows the project workflow. My focus was preparing the source files, organising cloud storage and setting up the BigQuery integration for the team.
 
 ## Technical examples
 
@@ -50,6 +47,7 @@ The repository also includes small, self-contained examples of data validation a
 | [Validation walkthrough](docs/manifest_validation.md) | How the source manifest checks work |
 | [Check-in data example](src/checkin_quality.py) | Python timestamp parsing and quality profiling |
 | [BigQuery SQL example](sql/checkin_quality_checks.sql) | SQL checks for timestamp validity |
+| [Example validation results](docs/demo_output.md) | Reproducible sample output and quality checks |
 | [Unit tests](tests/) | Tests for the Python validation functions |
 
 ## Try it locally
