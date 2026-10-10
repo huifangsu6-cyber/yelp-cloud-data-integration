@@ -1,19 +1,20 @@
-# Data organisation and governance
+# Data Organisation & Quality
 
-The original team workflow required a shared, predictable data foundation.
+Preparing a reliable dataset starts before SQL analysis. The project involved organising multiple Yelp source files so teammates could use a consistent shared data foundation.
 
-| Risk | Approach used in the project |
-| --- | --- |
-| Unclear source ownership | Classify datasets by type and analytical use |
-| Inconsistent file names | Standardise naming |
-| Redundant or obsolete copies | Identify final versions and remove unnecessary files |
-| Mixed CSV and JSON inputs | Review format and schema before loading |
-| Teammates using different data versions | Organise shared GCS files and allocate prepared datasets |
+## Data preparation practices
 
-## Portfolio publication rules
+| Focus | Approach | Why it matters |
+| --- | --- | --- |
+| Dataset organisation | Group files by dataset type and purpose | Easier discovery and hand-off |
+| File naming | Apply consistent naming conventions | Less confusion across workstreams |
+| Version management | Identify final datasets and remove redundant copies | More consistent analysis inputs |
+| Format standardisation | Review CSV/JSON formats | Predictable ingestion |
+| Schema review | Inspect fields and data structures | Better BigQuery loading readiness |
+| Collaboration | Share prepared datasets by workstream | Supports parallel analysis |
 
-- No course slides, exercises, answer keys or teaching notebooks.
-- No teammates' source code, reports or unpublished analyses.
-- No raw Yelp dataset or credentials.
-- All sample records are fictional and clearly labelled.
-- The example SQL and Python files are newly authored adaptations for portfolio demonstration.
+## Example quality checks
+
+The [source manifest validator](../src/source_manifest.py) demonstrates how file metadata can be checked before ingestion. It reports missing fields, repeated paths and versions, unsupported formats, and invalid column definitions.
+
+The [check-in quality example](../src/checkin_quality.py) illustrates timestamp parsing, error counts and duplicate event detection using synthetic records.
