@@ -1,52 +1,60 @@
-# Cloud Data Integration | Yelp Analytics Portfolio
+# Yelp Cloud Data Integration & Analytics
 
-**Google Cloud Storage · BigQuery · Python · SQL · Data Quality · Data Governance**
+**Google Cloud Storage · BigQuery · Python · SQL · Data Quality**
 
-A focused portfolio case study about the **cloud data foundation I personally prepared** for a collaborative university Yelp restaurant analytics project.
+A cloud data integration project supporting restaurant analytics using Yelp datasets. I organised the shared data foundation for a university team project, preparing source files in Google Cloud Storage and setting up the workflow for analysis in BigQuery.
 
-> **My role:** I organised and standardised source datasets in Google Cloud Storage, reviewed file formats and schemas, identified final dataset versions, and designed the shared GCS → BigQuery loading and table setup workflow. Teammates carried out their own dataset-specific cleaning and analytical workstreams.
+## Project overview
 
-## Featured case study
+The team worked with Yelp business, review and check-in data to explore restaurant performance. My focus was making the datasets consistent, accessible and ready for downstream analysis.
 
-**[Read: Cloud Data Integration & Data Governance](docs/case_study.md)**
+### My contribution
 
-The case study explains the business problem, my responsibilities, key data-management decisions and the hand-off to the analysis team.
+- **Cloud storage:** Organised source datasets in Google Cloud Storage with a consistent bucket and folder structure.
+- **Data standardisation:** Standardised file names and CSV/JSON formats, removed redundant files and identified the final dataset versions.
+- **Schema preparation:** Checked dataset fields and structures before ingestion.
+- **BigQuery integration:** Set up data loading and table structures to support the team's analysis.
+- **Collaboration:** Prepared and shared datasets with teammates responsible for the individual analysis workstreams.
+
+## Data workflow
 
 ```text
-Yelp source files
-    |
-    v
-Inventory, naming, version selection, format/schema checks  [my work]
-    |
-    v
-Google Cloud Storage organisation                         [my work]
-    |
-    v
-BigQuery data loading and table structure                 [my work]
-    |
-    v
-Shared analytical data
-    |
-    +--> Review, check-in and other analysis              [team workstreams]
+Yelp datasets (CSV / JSON)
+           |
+           v
+  File inventory & standardisation
+           |
+           v
+  Google Cloud Storage (GCS)
+           |
+           v
+  BigQuery loading & table setup
+           |
+           v
+  Shared analytics datasets
+           |
+           v
+  Team SQL / Python analysis
 ```
 
-## Repository guide
+## Technical examples
 
-| Resource | What it demonstrates |
+The repository also includes small, self-contained examples of data validation and quality checks, using sample data.
+
+| Explore | Description |
 | --- | --- |
-| [Individual case study](docs/case_study.md) | My GCS/BigQuery data integration responsibilities |
-| [Architecture](docs/architecture.md) | Data flow, quality gates and responsibility boundaries |
-| [Data governance](docs/data_governance.md) | File organisation, schema readiness and dataset hand-off |
-| **[Source manifest validator](src/source_manifest.py)** | **New synthetic example aligned with my file organisation, versioning and schema work** |
-| [Manifest validation guide](docs/manifest_validation.md) | Validation rules and limitations |
-| [Python check-in example](src/checkin_quality.py) | Optional synthetic timestamp validation, not my original workstream |
-| [SQL example](sql/checkin_quality_checks.sql) | Read-only BigQuery Standard SQL quality profile |
-| [Unit tests](tests/test_checkin_quality.py) | Input validation and duplicate detection |
-| [Synthetic sample](sample_data/synthetic_checkins.csv) | Fictional data only |
+| [Cloud integration case study](docs/case_study.md) | Project context, responsibilities and technical decisions |
+| [Data architecture](docs/architecture.md) | End-to-end data flow and validation checkpoints |
+| [Data organisation](docs/data_governance.md) | File naming, formats, schema readiness and version control |
+| [Source manifest validator](src/source_manifest.py) | Python checks for file metadata, versions, paths and schemas |
+| [Validation walkthrough](docs/manifest_validation.md) | How the source manifest checks work |
+| [Check-in data example](src/checkin_quality.py) | Python timestamp parsing and quality profiling |
+| [BigQuery SQL example](sql/checkin_quality_checks.sql) | SQL checks for timestamp validity |
+| [Unit tests](tests/) | Tests for the Python validation functions |
 
-## Run the Python example
+## Try it locally
 
-Requires **Python 3.10+**. No cloud account, API key or third-party package required.
+**Requirements:** Python 3.10+; no external packages.
 
 ```bash
 python src/source_manifest.py
@@ -54,12 +62,8 @@ python src/checkin_quality.py
 python -m unittest discover -s tests -v
 ```
 
-The Python and SQL examples were **created separately as portfolio illustrations**. In particular, the original project's check-in analysis was a teammate workstream; this example is not presented as my original contribution.
+The runnable examples use synthetic data to demonstrate related validation techniques. The project description covers my cloud integration work; the analytical workstreams were completed collaboratively.
 
-## Project context and limitations
+## Skills demonstrated
 
-The original academic project combined multiple Yelp datasets to explore restaurant performance. This repository is **not a copy of the coursework** and does not include course tutorials, other group members' code, original reports, Yelp records or cloud credentials.
-
-The cloud integration responsibilities described above are based on my direct account of my work. The original cloud pipeline is not deployed or reproduced here, and no commercial impact or production-readiness claim is made.
-
-**Target roles:** Data Analyst · Junior Data Engineer · BI / Data Quality Analyst
+**Cloud data integration** · **Data preparation** · **Schema validation** · **Data quality** · **Python** · **SQL** · **Cross-functional collaboration**
